@@ -8,7 +8,7 @@ const CONFIG = {
 };
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const grads = ['linear-gradient(160deg,#ff6b4a,#2a1418)', 'linear-gradient(160deg,#ffb938,#1f1220)', 'linear-gradient(160deg,#ff4d7e,#1a0f1c)'];
+const grads = ['linear-gradient(160deg,#7c4dff,#0a0a14)', 'linear-gradient(160deg,#00e5ff,#11111f)', 'linear-gradient(160deg,#ff3d81,#0a0a14)'];
 let GAMES = [], SET = {};
 
 $('#yr').textContent = new Date().getFullYear();
@@ -208,3 +208,4 @@ addEventListener('scroll', () => $('#hd').classList.toggle('s', scrollY > 40));
   if (GAMES.length || ($('#ggrid').textContent || '').indexOf('Could not') < 0) renderGames();
   route();
 })();
+       
