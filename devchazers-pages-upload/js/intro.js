@@ -8,7 +8,7 @@
   /* particles */
   var cv=el.querySelector('canvas'),cx=cv.getContext('2d'),dpr=Math.min(devicePixelRatio||1,2),W,H,P=[],t0=performance.now(),raf;
   function size(){W=cv.width=innerWidth*dpr;H=cv.height=innerHeight*dpr}size();
-  for(var i=0;i<70;i++){var a=Math.random()*6.283,r=Math.max(W,H)*(0.45+Math.random()*0.4);P.push({x:W/2+Math.cos(a)*r,y:H/2+Math.sin(a)*r,a:a,s:(1+Math.random()*2.2)*dpr,d:Math.random()*0.4,c:Math.random()>.5?'#ff6b4a':'#ffb938'})}
+  for(var i=0;i<70;i++){var a=Math.random()*6.283,r=Math.max(W,H)*(0.45+Math.random()*0.4);P.push({x:W/2+Math.cos(a)*r,y:H/2+Math.sin(a)*r,a:a,s:(1+Math.random()*2.2)*dpr,d:Math.random()*0.4,c:Math.random()>.5?'#00e5ff':'#7c4dff'})}
   function draw(now){var t=(now-t0)/1000;cx.clearRect(0,0,W,H);
     P.forEach(function(p){var k=Math.min(1,Math.max(0,(t-p.d)/1.0)),e=1-Math.pow(1-k,3),
       tx=W/2+Math.cos(p.a+t*1.5)*Math.min(W,H)*0.12,ty=H/2+Math.sin(p.a+t*1.5)*Math.min(W,H)*0.12,
