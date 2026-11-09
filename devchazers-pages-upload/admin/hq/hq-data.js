@@ -21,7 +21,7 @@
     VERSION: '1.0.0',
     STORE_KEY: 'dc_hq_v1',
     /* Flip to true only after hq-optional-schema.sql has been applied. */
-    CLOUD_TABLES: false,
+    CLOUD_TABLES: true,
     /* Optional AI endpoint for SEO Studio: POST JSON of the form inputs,
        expect JSON with keys title, description, hashtags, keywords, tags,
        caption, shorts_title, instagram, facebook, tiktok. Empty = template mode. */
