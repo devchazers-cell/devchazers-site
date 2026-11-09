@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DevChazers – Indie Game Studio</title>
+<meta name="description" content="DevChazers is an indie game studio crafting fun, free mobile games.">
+<link rel="canonical" href="https://devchazers.site/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="DevChazers">
+<meta property="og:title" content="DevChazers – Indie Game Studio"><meta property="og:description" content="Fun, free mobile games by DevChazers. Download on Google Play.">
+<meta property="og:url" content="https://devchazers.site/"><meta name="theme-color" content="#0a0a14">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"DevChazers","url":"https://devchazers.site","email":"contact@devchazers.site"}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c4dff%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2300e5ff%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2226%22%20fill%3D%22url%28%23g%29%22/%3E%3Crect%20x%3D%2213%22%20y%3D%2233%22%20width%3D%2221%22%20height%3D%226.5%22%20rx%3D%223.25%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.7%22/%3E%3Crect%20x%3D%2219%22%20y%3D%2246.75%22%20width%3D%2215%22%20height%3D%226.5%22%20rx%3D%223.25%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.7%22/%3E%3Crect%20x%3D%2213%22%20y%3D%2260.5%22%20width%3D%2221%22%20height%3D%226.5%22%20rx%3D%223.25%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.7%22/%3E%3Cpath%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%20d%3D%22M41%2022H58C74%2022%2084%2033%2084%2050C84%2067%2074%2078%2058%2078H41Z%20M53%2034V66H58C66%2066%2072%2060%2072%2050C72%2040%2066%2034%2058%2034Z%22/%3E%3Ccircle%20cx%3D%2287%22%20cy%3D%2221%22%20r%3D%225%22%20fill%3D%22%23fff%22/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a14;--card:#161628;--bd:#23233d;--tx:#e8e8f5;--mut:#9a9ab8;--g:#00e5ff;--a:#00e5ff;box-sizing:border-box}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font:14px/1.65 Inter,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3,.logo b{font-family:Orbitron,Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.5px}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+header{position:fixed;top:0;left:0;right:0;z-index:20;transition:.3s}
+header.s{background:rgba(10,10,20,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+header .wrap{display:flex;align-items:center;height:74px;gap:10px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;margin-right:auto}.logo b{font-size:27px;letter-spacing:.8px}
+.logo svg{width:34px;height:34px}
+nav{display:flex;gap:28px}nav a{text-decoration:none;font-size:13px;color:#dfe5f1;transition:.2s}nav a:hover{color:var(--a)}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:11px 26px;border-radius:99px;font:500 13px Inter;text-decoration:none;cursor:pointer;border:1px solid #fff8;color:#fff;background:#fff1;backdrop-filter:blur(6px);transition:.25s}
+.pill:hover{background:#fff;color:#000}.pill.w{background:#fff;color:#000;border-color:#fff}.pill.w:hover{background:var(--a);border-color:var(--a);color:#000;transform:translateY(-2px)}
+@media(max-width:760px){nav{display:none}}
+.view{display:none}.view.on{display:block}
+/* hero */
+.hero{margin:12px;border-radius:30px;min-height:min(92vh,760px);position:relative;overflow:hidden;display:flex;align-items:flex-end;
+ background:radial-gradient(ellipse 50% 40% at 62% 38%,#ff2a2a55,transparent 70%),radial-gradient(ellipse 60% 55% at 25% 30%,#7c4dff44,transparent 70%),radial-gradient(ellipse 50% 50% at 85% 80%,#00e5ff33,transparent 70%),linear-gradient(160deg,#2a1418,#1a0f1c 55%,#0a0a14)}
+.hero.img{background-size:cover;background-position:center}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 4%,transparent 60%);pointer-events:none}
+.beam{position:absolute;top:-10%;left:52%;width:260px;height:130%;background:linear-gradient(180deg,#fff9,#7c4dff22 50%,transparent);transform:rotate(18deg);filter:blur(30px);opacity:.5;animation:sw 7s ease-in-out infinite alternate}
+@keyframes sw{to{transform:rotate(-8deg) translateX(-120px);opacity:.25}}
+.cube{position:absolute;border-radius:14px;background:linear-gradient(135deg,#ff8a5c,#c2284f);box-shadow:0 20px 60px -10px #00e5ff88;animation:bob 6s ease-in-out infinite}
+.c1{width:110px;height:110px;right:20%;top:24%;transform:rotate(14deg)}
+.c2{width:60px;height:60px;right:34%;top:52%;background:linear-gradient(135deg,#ff6b6b,#7a1b3d);box-shadow:0 20px 60px -10px #ff4a4a88;animation-delay:-2s}
+.c3{width:80px;height:80px;right:8%;top:50%;background:linear-gradient(135deg,#ffd27a,#e0841c);box-shadow:0 20px 60px -10px #00e5ff88;animation-delay:-4s}
+@keyframes bob{50%{transform:translateY(-26px) rotate(-8deg)}}
+@media(max-width:760px){.cube{opacity:.5}}
+.hc{position:relative;z-index:2;width:100%;padding:0 clamp(22px,5vw,60px) 50px;display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.hero h1{font-size:clamp(44px,7.5vw,92px);line-height:.95;max-width:640px}
+.hero p{color:#cdbfc6;max-width:380px;margin-bottom:6px}
+.play{width:46px;height:46px;border-radius:50%;background:#fff3;border:1px solid #fff6;display:grid;place-items:center;float:right;margin-top:14px;text-decoration:none;transition:.2s}.play:hover{background:#fff;color:#000}
+/* sections
+   FIX: pehle "padding:80px 0 20px" tha, jo .wrap ka left/right padding hata deta tha
+   (mobile par text screen ke edge se chipak jata tha). Ab sirf top/bottom set hai. */
+section.s{padding-top:80px;padding-bottom:20px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:800px){.about{grid-template-columns:1fr;gap:30px}}
+.strips{display:flex;gap:10px;height:340px;perspective:900px}
+.strip{flex:1;border-radius:20px;transform:skewX(-8deg) rotate(4deg);border:1px solid #ffffff22;transition:.4s;background-size:cover;background-position:center}
+.strip:hover{flex:1.8}
+h2.t{font-size:clamp(34px,4.5vw,52px);line-height:1;margin-bottom:14px}
+.muted{color:var(--mut)}
+.stats{display:flex;gap:40px;margin-top:26px;flex-wrap:wrap}.stats b{display:block;font:400 34px Orbitron;letter-spacing:1px}.stats span{color:var(--mut);font-size:13px}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:26px}
+.rail{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 24px;scroll-snap-type:x mandatory;scrollbar-width:thin}
+.gc{flex:none;width:210px;aspect-ratio:3/4.1;border-radius:20px;position:relative;overflow:hidden;cursor:pointer;scroll-snap-align:start;border:1px solid var(--bd);background-size:cover;background-position:center;transition:transform .3s,box-shadow .3s}
+.gc:hover{transform:translateY(-8px);box-shadow:0 24px 50px -20px var(--a)}
+.gc .em{position:absolute;inset:0;display:grid;place-items:center;font-size:64px;opacity:.9}
+.gc .lb{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;background:linear-gradient(transparent,#000d);display:flex;justify-content:space-between;align-items:center;font:500 11px Inter;letter-spacing:1px;text-transform:uppercase}
+.gc .lb i{width:7px;height:7px;border-radius:50%;background:var(--g);box-shadow:0 0 10px var(--g)}
+.soon .lb i{background:#f5a623;box-shadow:0 0 10px #f5a623}
+.news{display:grid;grid-template-columns:1fr 1.5fr;gap:50px;align-items:center}
+@media(max-width:800px){.news{grid-template-columns:1fr;gap:26px}}
+.ncs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.nc{background:var(--card);border:1px solid var(--bd);border-radius:20px;overflow:hidden;transition:.3s}.nc:hover{transform:translateY(-6px);border-color:#00e5ff66}
+.nc .im{height:150px;display:grid;place-items:center;font-size:48px;background:linear-gradient(135deg,#3a1830,#2b1230)}
+.nc .b{padding:16px}.tag{display:inline-block;background:#fff1;border-radius:6px;padding:1px 9px;font-size:10px;margin-bottom:8px}
+.nc h3{font:500 15px/1.35 Inter;text-transform:none;letter-spacing:0;margin-bottom:6px}.nc p{color:var(--mut);font-size:12px}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}.rv.show{opacity:1;transform:none}
+/* pages */
+.page{max-width:780px;padding:130px 20px 80px;margin:0 auto}.page h1{font-size:58px;line-height:1;margin-bottom:8px}.page h3{font:500 17px Inter;text-transform:none;margin:24px 0 6px}
+.page p,.page li{color:var(--mut);margin-bottom:8px}.page ul{padding-left:20px}.page .u{color:var(--a);font-size:12px;margin-bottom:16px}
+input,textarea{background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:14px;padding:12px 16px;font:inherit;width:100%;margin:6px 0 12px}
+input:focus,textarea:focus{outline:2px solid var(--a)}
+/* footer */
+footer{margin-top:90px;border-top:1px solid var(--bd);position:relative;overflow:hidden;padding:56px 0 0}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}@media(max-width:700px){.fg{grid-template-columns:1fr 1fr}}
+footer h4{font:500 13px Inter;margin-bottom:12px}footer li{list-style:none;margin-bottom:6px}footer ul{padding:0}footer a{color:var(--mut);text-decoration:none;font-size:13px}footer a:hover{color:var(--tx)}
+.wm{font:400 clamp(80px,19vw,260px)/.8 Orbitron;text-align:center;color:#ffffff0d;margin-top:30px;user-select:none;white-space:nowrap}
+.copy{color:var(--mut);font-size:12px;padding:20px 0}
+/* modal */
+.modal{position:fixed;inset:0;background:#000b;z-index:40;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px)}.modal.open{display:flex}
+.sheet{background:#120e16;border:1px solid var(--bd);border-radius:26px;width:100%;max-width:720px;max-height:90vh;overflow:auto;padding:26px}
+.sheet h2{font-size:38px}.shots{display:flex;gap:10px;overflow-x:auto;margin:16px 0}.shots img{height:230px;border-radius:14px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+.pill.coffee{background:#ffdd00;color:#111;border-color:#ffdd00;font-weight:600;padding:9px 18px}.pill.coffee:hover{background:#fff;color:#000}.pill.big{padding:15px 34px;font-size:15px}
+@media(max-width:900px){header .pill.coffee{display:none}}
+.sup{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;background:linear-gradient(135deg,#7c4dff22,#00e5ff18);border:1px solid var(--bd);border-radius:26px;padding:34px}
+select{background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:14px;padding:12px 16px;font:inherit;width:100%}
+
+/* discreet admin field */
+.admin-key{width:100%;max-width:150px;background:transparent;color:var(--tx);border:1px solid transparent;border-radius:8px;padding:6px 8px;font:inherit;font-size:12px;outline:none;transition:.2s;margin:0}
+.admin-key:focus{border-color:var(--a);background:#ffffff08}
+
+/* ===================== GALAXY PLANET (About section) ===================== */
+#strips,#strips[hidden]{display:none!important}   /* JS ke liye element rakha hai, par dikhega nahi */
+.galaxy{position:relative;width:100%;max-width:420px;aspect-ratio:1;margin:0 auto;animation:gIn 1.2s ease both}
+@keyframes gIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+.galaxy::before{content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,#7c4dff44 0,#00e5ff14 45%,transparent 70%);filter:blur(24px)}
+.galaxy .sky{position:absolute;inset:0;border-radius:50%;
+  background:
+   radial-gradient(1.5px 1.5px at 12% 22%,#fff,transparent),
+   radial-gradient(1px 1px at 82% 18%,#fff,transparent),
+   radial-gradient(2px 2px at 70% 85%,#9fe9ff,transparent),
+   radial-gradient(1px 1px at 25% 78%,#fff,transparent),
+   radial-gradient(1.5px 1.5px at 92% 55%,#c9b6ff,transparent),
+   radial-gradient(1px 1px at 5% 55%,#fff,transparent),
+   radial-gradient(1.5px 1.5px at 48% 6%,#fff,transparent),
+   radial-gradient(1px 1px at 55% 95%,#fff,transparent);
+  animation:tw 3.5s ease-in-out infinite alternate}
+@keyframes tw{from{opacity:.35}to{opacity:1}}
+
+/* planet */
+.galaxy .planet{position:absolute;left:33%;top:33%;width:34%;aspect-ratio:1;border-radius:50%;z-index:2;overflow:hidden;
+  background:
+   repeating-linear-gradient(-18deg,transparent 0 14px,#ffffff14 14px 22px),
+   radial-gradient(circle at 30% 28%,#b8f3ff 0,#00e5ff 16%,#7c4dff 55%,#1a0f4a 100%);
+  box-shadow:0 0 70px #7c4dff99,0 0 30px #00e5ff55,inset -16px -16px 34px #000000aa;
+  animation:pf 6s ease-in-out infinite}
+@keyframes pf{50%{transform:translateY(-10px)}}
+@keyframes pfr{50%{transform:rotate(-20deg) translateY(-10px)}}
+
+/* planet ring (back half planet ke peeche, front half aage) */
+.galaxy .ring{position:absolute;left:17%;top:40%;width:66%;height:20%;border-radius:50%;
+  border:5px solid transparent;transform:rotate(-20deg);animation:pfr 6s ease-in-out infinite}
+.galaxy .ring.back{border-top-color:#00e5ffaa;z-index:1}
+.galaxy .ring.front{border-bottom-color:#00e5ffcc;z-index:3;box-shadow:0 8px 20px -8px #00e5ff88}
+
+/* orbits + stars */
+.galaxy .orbit{position:absolute;border-radius:50%;border:1px dashed #ffffff22;z-index:0;animation:spin linear infinite}
+.galaxy .o1{inset:18%;animation-duration:9s}
+.galaxy .o2{inset:9%;animation-duration:15s;animation-direction:reverse}
+.galaxy .o3{inset:0;animation-duration:24s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.galaxy .orbit i{position:absolute;top:-5px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;
+  background:#fff;box-shadow:0 0 12px 3px #00e5ff}
+.galaxy .orbit i:nth-child(2){top:auto;bottom:-5px;background:#c9b6ff;box-shadow:0 0 12px 3px #7c4dff}
+.galaxy .o2 i:first-child{width:16px;height:16px;margin-left:-8px;top:-8px;
+  background:radial-gradient(circle at 30% 30%,#ffd27a,#e0841c);box-shadow:0 0 16px 2px #ff8a5c}
+.galaxy .o3 i:first-child{background:#ffd27a;box-shadow:0 0 14px 3px #ffd27a}
+/* ========================================================================= */
+
+</style>
+<link rel="stylesheet" href="css/site.css">
+<script>(function(){try{var q=/[?&]intro\b/.test(location.search);if(q||!sessionStorage.getItem('dc_intro'))document.documentElement.classList.add('intro')}catch(e){document.documentElement.classList.add('intro')}})()</script>
+<link rel="stylesheet" href="css/intro.css">
+<link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+<div id="intro" aria-hidden="true"><canvas></canvas><div class="glow"></div><img class="ic" src="logo/logo-icon-nova.svg" alt=""><div class="word"></div><div class="tag">Indie Game Studio</div><div class="bar"></div><button class="skip" type="button">Skip</button></div>
+<header id="hd"><div class="wrap">
+  <a class="logo" href="#home"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c4dff"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs><rect width="100" height="100" rx="26" fill="url(#lg)"/><rect x="13" y="33" width="21" height="6.5" rx="3.25" fill="#fff" fill-opacity=".7"/><rect x="19" y="46.75" width="15" height="6.5" rx="3.25" fill="#fff" fill-opacity=".7"/><rect x="13" y="60.5" width="21" height="6.5" rx="3.25" fill="#fff" fill-opacity=".7"/><path fill="#fff" fill-rule="evenodd" d="M41 22H58C74 22 84 33 84 50C84 67 74 78 58 78H41Z M53 34V66H58C66 66 72 60 72 50C72 40 66 34 58 34Z"/><circle cx="87" cy="21" r="5" fill="#fff"/></svg><b>Dev<span>Chazers</span></b></a>
+  <nav><a href="#about">About</a><a href="#games">Games</a><a href="#news">News</a><a href="#remove-ads">Remove Ads</a><a href="#contact">Contact</a></nav>
+    <a class="pill" id="disc" href="#" target="_blank" rel="noopener">Join Discord</a>
+  <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+</div></header>
+
+<main>
+<div class="view" id="v-home">
+  <div class="hero" id="hero"><canvas id="particles" aria-hidden="true"></canvas>
+    <div class="hc">
+      <span class="htag">INDIE GAME STUDIO</span>
+      <h1>DevChazers takes you to <span>new worlds</span> of play and adventure.</h1>
+      <p>We craft unique, art-driven mobile games that inspire wonder, creativity, and endless fun. Explore what's next in our universe of games.</p>
+      <div class="hbtns"><a class="pill w" href="#games">Explore Games →</a><a class="pill" href="#contact">Work With Us</a><a class="play" id="trailer" href="#" target="_blank" rel="noopener" aria-label="Watch trailer">▶</a></div>
+    </div></div>
+
+  <section class="s wrap" id="about"><div class="about">
+
+    <!-- ========== NEW: GALAXY PLANET (purani image ki jagah) ========== -->
+    <div class="galaxy" aria-hidden="true">
+      <div class="sky"></div>
+      <div class="orbit o3"><i></i><i></i></div>
+      <div class="orbit o2"><i></i><i></i></div>
+      <div class="orbit o1"><i></i><i></i></div>
+      <div class="ring back"></div>
+      <div class="planet"></div>
+      <div class="ring front"></div>
+    </div>
+    <!-- DELETE MAT KARNA: site.js is id ko dhoondhta hai. Hidden hai, kuch dikhayega nahi. -->
+    <div id="strips" hidden></div>
+    <!-- ================================================================ -->
+
+    <div class="rv"><h2 class="t">A creative studio crafting games that <span>spark imagination.</span></h2>
+      <p class="muted" id="about_p">Our team of artists and developers is dedicated to creating experiences that stay with players long after the game is over.</p>
+      <div class="stats"><div><b id="n1">0</b><span>Games Released</span></div><div><b>100%</b><span>Free to Play</span></div><div><b>24/7</b><span>Player Support</span></div></div></div>
+  </div></section>
+
+  <section class="s wrap" id="games"><div class="head rv"><h2 class="t" style="margin:0">Explore our<br><span>game universe</span></h2><a class="pill" href="#contact">Work with us →</a></div>
+    <div class="ggrid rv" id="ggrid"></div></section>
+
+  <section class="s wrap" id="support"><div class="sup rv"><div><h2 class="t" style="margin:0 0 8px">Enjoy our <span>games?</span></h2><p class="muted" id="sup_p">DevChazers is a small indie team. Sharing our games with friends and leaving a review on Google Play is the best way to support us. Direct support options are coming soon.</p><small>Support is always optional and never unlocks anything in our games.</small></div></div></section>
+
+  <section class="s wrap" id="news"><div class="news">
+    <div class="rv"><h2 class="t">News, updates, and <span>behind-the-scenes</span> from DevChazers.</h2><p class="muted">Stay up to date with the latest from our studio: new releases, updates and the stories behind our games.</p></div>
+    <div class="ncs rv" id="ncs"></div></div></section>
+</div>
+
+<section class="view" id="v-remove-ads"><div class="page"><h1>Remove Ads</h1><div class="u">Play ad-free in our games</div>
+<p>All DevChazers games are free to play with ads. If you prefer an ad-free experience, you can remove ads inside the game with a one-time purchase through Google Play.</p>
+<h3>Choose your game</h3><select id="ra_sel"></select><div id="ra_out" style="margin-top:14px"></div>
+<h3>How it works</h3><ul><li>Open the game and tap <b>Settings</b> or the <b>Shop</b>.</li><li>Tap <b>Remove Ads</b> and pay securely through Google Play.</li><li>Ads are removed immediately. No account or ID needed.</li><li>Reinstalled or new phone? Open the game and tap <b>Restore Purchases</b> using the same Google acc
