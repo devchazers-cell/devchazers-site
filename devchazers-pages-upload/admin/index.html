@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>DevChazers CMS</title>
+<link rel="icon" href="../logo/logo-icon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+<style>.hq-entry{color:#00e5ff;font-weight:600}.hq-entry:hover{color:#fff}</style>
+</head>
+<body>
+<div id="gate" class="gate">
+  <div class="box">
+    <img src="../logo/logo-icon.svg" width="48" alt="">
+    <h1>Admin Login</h1>
+    <input type="email" id="gem" placeholder="Email" autocomplete="username" inputmode="email">
+    <input type="password" id="gpw" placeholder="Password" autocomplete="current-password">
+    <button class="btn pri" id="gbtn" type="button">Sign in</button>
+    <p id="gmsg" class="msg"></p>
+  </div>
+</div>
+
+<div id="app" class="app" hidden>
+  <header class="topbar">
+    <button type="button" class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+    <div class="brand"><img src="../logo/logo-icon.svg" width="28" alt=""><b>DevChazers CMS</b></div>
+    <button type="button" class="btn sm" id="logout">Logout</button>
+  </header>
+  <div class="shell">
+    <aside class="side" id="side">
+      <nav id="tabs">
+        <button type="button" data-t="dash" class="on">Dashboard</button>
+        <button type="button" data-t="games">Games</button>
+        <button type="button" data-t="pages">Pages</button>
+        <button type="button" data-t="media">Media</button>
+        <button type="button" data-t="ads">Ads</button>
+        <button type="button" data-t="seo">SEO</button>
+        <button type="button" data-t="settings">Settings</button>
+      </nav>
+      <!-- ADDED FOR DEVCHAZERS HQ (additive only — classic tabs above are unchanged) -->
+      <a class="lnk hq-entry" href="hq/">◈ DevChazers HQ</a>
+      <a class="lnk" href="../">← View website</a>
+    </aside>
+    <main class="main">
+      <div id="toast" class="toast" role="status"></div>
+
+      <!-- DASHBOARD -->
+      <section id="t-dash" class="tab on">
+        <h2>Dashboard</h2>
+        <div class="stats" id="stats"></div>
+        <div class="quick">
+          <button type="button" class="btn pri" data-go="games" data-action="new-game">+ Add Game</button>
+          <button type="button" class="btn" data-go="pages" data-action="new-page">+ New Page</button>
+          <button type="button" class="btn" data-go="media">Media Library</button>
+        </div>
+        <h3 class="subh">Recent activity</h3>
+        <div id="activity" class="activity"></div>
+      </section>
+
+      <!-- GAMES -->
+      <section id="t-games" class="tab">
+        <div class="headrow">
+          <h2>Games</h2>
+          <button type="button" class="btn pri" id="btnNewGame">+ Add Game</button>
+        </div>
+        <input type="search" id="gsearch" class="search" placeholder="Search games…">
+        <div id="glist" class="clist"></div>
+        <div id="geditor" class="editor" hidden>
+          <h3 id="gtitle">Add Game</h3>
+          <form id="gf" class="form" novalidate>
+            <label>Name *<input id="f_name" maxlength="80" required></label>
+            <label>Game ID *<input id="f_slug" maxlength="60" required></label>
+            <label>Category *<input id="f_cat" maxlength="40" list="cats" required>
+              <datalist id="cats"><option>Sports</option><option>Action</option><option>Puzzle</option><option>Racing</option><option>Arcade</option><option>Adventure</option><option>Casual</option></datalist>
+            </label>
+            <label>Version *<input id="f_ver" maxlength="20" required></label>
+            <label>Status
+              <select id="f_status"><option value="available">Available</option><option value="coming_soon">Coming Soon</option></select>
+            </label>
+            <label>Release date<input type="date" id="f_date"></label>
+            <label class="full">Short description * <small id="sc">0/160</small><input id="f_short" maxlength="160" required></label>
+            <label class="full">Full description<textarea id="f_full" rows="5" maxlength="5000"></textarea></label>
+            <label class="full">APK Drive link<input id="f_apk" type="url" placeholder="https://drive.google.com/…"></label>
+            <label class="full">Play Store URL<input id="f_play" type="url" placeholder="https://play.google.com/…"></label>
+            <div class="full"><span class="lbl">Icon (PNG/JPG/WebP ≤1MB)</span><div id="iconPrev" class="prev"></div><input type="file" id="f_icon" accept="image/png,image/jpeg,image/webp"></div>
+            <div class="full"><span class="lbl">Screenshots (≤10, 3MB each)</span><div id="shotPrev" class="prev"></div><input type="file" id="f_shots" accept="image/png,image/jpeg,image/webp" multiple></div>
+            <label class="chk"><input type="checkbox" id="f_feat"> Featured</label>
+            <label class="chk"><input type="checkbox" id="f_pub" checked> Published</label>
+            <p id="ferr" class="msg full"></p>
+            <div class="full row">
+              <button class="btn pri" type="submit" id="fsave">Save</button>
+              <button class="btn" type="button" id="fcancel">Cancel</button>
+              <a class="btn" id="gpreview" href="#" target="_blank" rel="noopener">Preview</a>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- PAGES -->
+      <section id="t-pages" class="tab">
+        <div class="headrow">
+          <h2>Pages</h2>
+          <button type="button" class="btn pri" id="btnNewPage">+ New Page</button>
+        </div>
+        <input type="search" id="psearch" class="search" placeholder="Search pages…">
+        <div id="plist" class="clist"></div>
+        <div id="peditor" class="editor" hidden>
+          <h3 id="ptitle">New Page</h3>
+          <form id="pf" class="form" novalidate>
+            <label>Title *<input id="p_title" maxlength="120" required></label>
+            <label>URL slug *<input id="p_slug" maxlength="80" required placeholder="privacy-policy"></label>
+            <label>Status
+              <select id="p_status"><option value="draft">Draft</option><option value="published">Published</option></select>
+            </label>
+            <label>Visibility
+              <select id="p_vis"><option value="public">Public</option><option value="private">Private</option></select>
+            </label>
+            <label class="full">SEO title<input id="p_seo_title" maxlength="120"></label>
+            <label class="full">SEO description<textarea id="p_seo_desc" rows="2" maxlength="300"></textarea></label>
+            <div class="full">
+              <span class="lbl">Content</span>
+              <div class="toolbar">
+                <button type="button" data-cmd="bold" title="Bold"><b>B</b></button>
+                <button type="button" data-cmd="italic" title="Italic"><i>I</i></button>
+                <button type="button" data-cmd="insertUnorderedList" title="List">• List</button>
+                <button type="button" data-cmd="formatBlock" data-val="h2" title="Heading">H2</button>
+                <button type="button" data-cmd="formatBlock" data-val="h3" title="Subheading">H3</button>
+                <button type="button" data-cmd="createLink" title="Link">Link</button>
+                <button type="button" id="pInsertImg" title="Image">Image</button>
+              </div>
+              <div id="p_content" class="richedit" contenteditable="true"></div>
+            </div>
+            <p id="perr" class="msg full"></p>
+            <div class="full row">
+              <button class="btn pri" type="submit">Save</button>
+              <button class="btn" type="button" id="pcancel">Cancel</button>
+              <button class="btn" type="button" id="pcopy">Copy public link</button>
+              <a class="btn" id="ppreview" href="#" target="_blank" rel="noopener">Preview</a>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- MEDIA -->
+      <section id="t-media" class="tab">
+        <div class="headrow">
+          <h2>Media Library</h2>
+          <label class="btn pri filebtn">Upload<input type="file" id="mupload" accept="image/*" hidden multiple></label>
+        </div>
+        <p class="hint">PNG, JPG, WebP, GIF, SVG, ICO — max 5 MB each. Stored in Supabase Storage.</p>
+        <div id="mgrid" class="mgrid"></div>
+      </section>
+
+      <!-- ADS -->
+      <section id="t-ads" class="tab">
+        <h2>Ads Management</h2>
+        <form id="af" class="form" novalidate>
+          <label class="full">AdMob Publisher ID
+            <input id="a_pub" placeholder="pub-xxxxxxxxxxxxxxxx" maxlength="40">
+          </label>
+          <label class="full">ads.txt content
+            <textarea id="a_txt" rows="8" placeholder="google.com, pub-XXXXXXXX, DIRECT, f08c47fec0942fa0"></textarea>
+          </label>
+          <p class="hint full">Must be available at <code>https://yoursite/ads.txt</code> (site root). On save, content is stored and <b>ads.txt downloads automatically</b> — upload that file to your project root and redeploy (Direct Upload does not support Functions).</p>
+          <div id="a_status" class="status-box full"></div>
+          <p id="aerr" class="msg full"></p>
+          <div class="full row">
+            <button class="btn pri" type="submit">Save ads settings</button>
+            <a class="btn" id="a_open" href="/ads.txt" target="_blank" rel="noopener">Open /ads.txt</a>
+          </div>
+        </form>
+        <h3 class="subh">Advertising information page</h3>
+        <p class="hint">Create or edit a normal CMS page (e.g. slug <code>advertising</code>) under <b>Pages</b> for human-readable ad info. That is separate from the root <code>ads.txt</code> file.</p>
+      </section>
+
+      <!-- SEO -->
+      <section id="t-seo" class="tab">
+        <h2>SEO</h2>
+        <form id="seof" class="form" novalidate>
+          <label class="full">Default homepage title<input id="seo_title" maxlength="120"></label>
+          <label class="full">Default homepage description<textarea id="seo_desc" rows="3" maxlength="300"></textarea></label>
+          <label class="full">Open Graph image URL<input id="seo_og" type="url" placeholder="https://…/image.jpg"></label>
+          <label class="full">robots.txt<textarea id="seo_robots" rows="6"></textarea></label>
+          <p class="hint full">Published public pages are listed in <code>/sitemap.xml</code> automatically (via Cloudflare Function). Drafts and private pages are excluded.</p>
+          <p id="seoerr" class="msg full"></p>
+          <div class="full row">
+            <button class="btn pri" type="submit">Save SEO settings</button>
+            <a class="btn" href="/sitemap.xml" target="_blank" rel="noopener">Open sitemap</a>
+            <a class="btn" href="/robots.txt" target="_blank" rel="noopener">Open robots.txt</a>
+          </div>
+        </form>
+      </section>
+
+      <!-- SETTINGS -->
+      <section id="t-settings" class="tab">
+        <h2>Website Settings</h2>
+        <form id="sf" class="form" novalidate>
+          <label>Website name<input id="s_name" maxlength="80"></label>
+          <label>Contact email<input id="s_mail" type="email" maxlength="120"></label>
+          <label class="full">Homepage title<input id="s_htitle" maxlength="120"></label>
+          <label class="full">Homepage description<textarea id="s_hdesc" rows="2" maxlength="300"></textarea></label>
+          <label class="full">About section text<textarea id="s_about" rows="4" maxlength="2000"></textarea></label>
+          <label class="full">Support section text<textarea id="s_sup" rows="3" maxlength="1000"></textarea></label>
+          <label class="full">Footer text<textarea id="s_footer" rows="2" maxlength="500"></textarea></label>
+          <label>Discord URL<input id="s_discord" type="url"></label>
+          <label>YouTube URL<input id="s_youtube" type="url"></label>
+          <label>X / Twitter URL<input id="s_twitter" type="url"></label>
+          <label class="full">Logo image URL<small>Upload via Media, then paste URL</small><input id="s_logo" type="url"></label>
+          <label class="full">Favicon URL<input id="s_fav" type="url"></label>
+          <fieldset class="full checks">
+            <legend>Homepage sections</legend>
+            <label class="chk"><input type="checkbox" id="s_show_about"> Show About</label>
+            <label class="chk"><input type="checkbox" id="s_show_games"> Show Games</label>
+            <label class="chk"><input type="checkbox" id="s_show_news"> Show News</label>
+            <label class="chk"><input type="checkbox" id="s_show_support"> Show Support</label>
+          </fieldset>
+          <p id="serr" class="msg full"></p>
+          <div class="full"><button class="btn pri" type="submit">Save settings</button></div>
+        </form>
+      </section>
+    </main>
+  </div>
+</div>
+
+<div id="conf" class="gate" hidden>
+  <div class="box">
+    <p id="confmsg"></p>
+    <div class="row">
+      <button type="button" class="btn" id="cno">Cancel</button>
+      <button type="button" class="btn dng" id="cyes">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script>window.DC_ROOT="../";</script>
+<script src="../js/config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="../js/data-service.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
