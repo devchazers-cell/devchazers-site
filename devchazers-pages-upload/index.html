@@ -46,8 +46,10 @@ nav{display:flex;gap:28px}nav a{text-decoration:none;font-size:13px;color:#dfe5f
 .hero h1{font-size:clamp(44px,7.5vw,92px);line-height:.95;max-width:640px}
 .hero p{color:#cdbfc6;max-width:380px;margin-bottom:6px}
 .play{width:46px;height:46px;border-radius:50%;background:#fff3;border:1px solid #fff6;display:grid;place-items:center;float:right;margin-top:14px;text-decoration:none;transition:.2s}.play:hover{background:#fff;color:#000}
-/* sections */
-section.s{padding:80px 0 20px}
+/* sections
+   FIX: pehle "padding:80px 0 20px" tha, jo .wrap ka left/right padding hata deta tha
+   (mobile par text screen ke edge se chipak jata tha). Ab sirf top/bottom set hai. */
+section.s{padding-top:80px;padding-bottom:20px}
 .about{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
 @media(max-width:800px){.about{grid-template-columns:1fr;gap:30px}}
 .strips{display:flex;gap:10px;height:340px;perspective:900px}
@@ -98,8 +100,57 @@ select{background:var(--card);color:var(--tx);border:1px solid var(--bd);border-
 .admin-key{width:100%;max-width:150px;background:transparent;color:var(--tx);border:1px solid transparent;border-radius:8px;padding:6px 8px;font:inherit;font-size:12px;outline:none;transition:.2s;margin:0}
 .admin-key:focus{border-color:var(--a);background:#ffffff08}
 
-  </style>
-  <link rel="stylesheet" href="css/site.css">
+/* ===================== GALAXY PLANET (About section) ===================== */
+#strips,#strips[hidden]{display:none!important}   /* JS ke liye element rakha hai, par dikhega nahi */
+.galaxy{position:relative;width:100%;max-width:420px;aspect-ratio:1;margin:0 auto;animation:gIn 1.2s ease both}
+@keyframes gIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+.galaxy::before{content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,#7c4dff44 0,#00e5ff14 45%,transparent 70%);filter:blur(24px)}
+.galaxy .sky{position:absolute;inset:0;border-radius:50%;
+  background:
+   radial-gradient(1.5px 1.5px at 12% 22%,#fff,transparent),
+   radial-gradient(1px 1px at 82% 18%,#fff,transparent),
+   radial-gradient(2px 2px at 70% 85%,#9fe9ff,transparent),
+   radial-gradient(1px 1px at 25% 78%,#fff,transparent),
+   radial-gradient(1.5px 1.5px at 92% 55%,#c9b6ff,transparent),
+   radial-gradient(1px 1px at 5% 55%,#fff,transparent),
+   radial-gradient(1.5px 1.5px at 48% 6%,#fff,transparent),
+   radial-gradient(1px 1px at 55% 95%,#fff,transparent);
+  animation:tw 3.5s ease-in-out infinite alternate}
+@keyframes tw{from{opacity:.35}to{opacity:1}}
+
+/* planet */
+.galaxy .planet{position:absolute;left:33%;top:33%;width:34%;aspect-ratio:1;border-radius:50%;z-index:2;overflow:hidden;
+  background:
+   repeating-linear-gradient(-18deg,transparent 0 14px,#ffffff14 14px 22px),
+   radial-gradient(circle at 30% 28%,#b8f3ff 0,#00e5ff 16%,#7c4dff 55%,#1a0f4a 100%);
+  box-shadow:0 0 70px #7c4dff99,0 0 30px #00e5ff55,inset -16px -16px 34px #000000aa;
+  animation:pf 6s ease-in-out infinite}
+@keyframes pf{50%{transform:translateY(-10px)}}
+@keyframes pfr{50%{transform:rotate(-20deg) translateY(-10px)}}
+
+/* planet ring (back half planet ke peeche, front half aage) */
+.galaxy .ring{position:absolute;left:17%;top:40%;width:66%;height:20%;border-radius:50%;
+  border:5px solid transparent;transform:rotate(-20deg);animation:pfr 6s ease-in-out infinite}
+.galaxy .ring.back{border-top-color:#00e5ffaa;z-index:1}
+.galaxy .ring.front{border-bottom-color:#00e5ffcc;z-index:3;box-shadow:0 8px 20px -8px #00e5ff88}
+
+/* orbits + stars */
+.galaxy .orbit{position:absolute;border-radius:50%;border:1px dashed #ffffff22;z-index:0;animation:spin linear infinite}
+.galaxy .o1{inset:18%;animation-duration:9s}
+.galaxy .o2{inset:9%;animation-duration:15s;animation-direction:reverse}
+.galaxy .o3{inset:0;animation-duration:24s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.galaxy .orbit i{position:absolute;top:-5px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;
+  background:#fff;box-shadow:0 0 12px 3px #00e5ff}
+.galaxy .orbit i:nth-child(2){top:auto;bottom:-5px;background:#c9b6ff;box-shadow:0 0 12px 3px #7c4dff}
+.galaxy .o2 i:first-child{width:16px;height:16px;margin-left:-8px;top:-8px;
+  background:radial-gradient(circle at 30% 30%,#ffd27a,#e0841c);box-shadow:0 0 16px 2px #ff8a5c}
+.galaxy .o3 i:first-child{background:#ffd27a;box-shadow:0 0 14px 3px #ffd27a}
+/* ========================================================================= */
+
+</style>
+<link rel="stylesheet" href="css/site.css">
 <script>(function(){try{var q=/[?&]intro\b/.test(location.search);if(q||!sessionStorage.getItem('dc_intro'))document.documentElement.classList.add('intro')}catch(e){document.documentElement.classList.add('intro')}})()</script>
 <link rel="stylesheet" href="css/intro.css">
 <link rel="stylesheet" href="css/theme.css">
@@ -124,7 +175,21 @@ select{background:var(--card);color:var(--tx);border:1px solid var(--bd);border-
     </div></div>
 
   <section class="s wrap" id="about"><div class="about">
-    <div class="strips rv" id="strips"></div>
+
+    <!-- ========== NEW: GALAXY PLANET (purani image ki jagah) ========== -->
+    <div class="galaxy" aria-hidden="true">
+      <div class="sky"></div>
+      <div class="orbit o3"><i></i><i></i></div>
+      <div class="orbit o2"><i></i><i></i></div>
+      <div class="orbit o1"><i></i><i></i></div>
+      <div class="ring back"></div>
+      <div class="planet"></div>
+      <div class="ring front"></div>
+    </div>
+    <!-- DELETE MAT KARNA: site.js is id ko dhoondhta hai. Hidden hai, kuch dikhayega nahi. -->
+    <div id="strips" hidden></div>
+    <!-- ================================================================ -->
+
     <div class="rv"><h2 class="t">A creative studio crafting games that <span>spark imagination.</span></h2>
       <p class="muted" id="about_p">Our team of artists and developers is dedicated to creating experiences that stay with players long after the game is over.</p>
       <div class="stats"><div><b id="n1">0</b><span>Games Released</span></div><div><b>100%</b><span>Free to Play</span></div><div><b>24/7</b><span>Player Support</span></div></div></div>
@@ -143,52 +208,4 @@ select{background:var(--card);color:var(--tx);border:1px solid var(--bd);border-
 <section class="view" id="v-remove-ads"><div class="page"><h1>Remove Ads</h1><div class="u">Play ad-free in our games</div>
 <p>All DevChazers games are free to play with ads. If you prefer an ad-free experience, you can remove ads inside the game with a one-time purchase through Google Play.</p>
 <h3>Choose your game</h3><select id="ra_sel"></select><div id="ra_out" style="margin-top:14px"></div>
-<h3>How it works</h3><ul><li>Open the game and tap <b>Settings</b> or the <b>Shop</b>.</li><li>Tap <b>Remove Ads</b> and pay securely through Google Play.</li><li>Ads are removed immediately. No account or ID needed.</li><li>Reinstalled or new phone? Open the game and tap <b>Restore Purchases</b> using the same Google account.</li></ul>
-<h3>Questions?</h3><p>If something goes wrong with a purchase, contact us at <b class="em2"></b> with your Google Play order number and we will help.</p></div></section>
-
-<section class="view" id="v-contact"><div class="page"><h1>Contact Us</h1><div class="u">We usually reply within 24 hours</div>
-  <label>Your name</label><input id="c_n"><label>Your email</label><input id="c_e" type="email"><label>Message</label><textarea id="c_m" rows="5"></textarea>
-  <button class="pill w" id="c_s">Send Message</button><p style="margin-top:18px">Or email us: <b class="em2"></b></p></div></section>
-
-<section class="view" id="v-privacy"><div class="page"><h1>Privacy Policy</h1><div class="u">Last updated: <span class="dt"></span></div>
-<p>DevChazers ("we", "us") respects your privacy. This policy explains what information we collect when you use our website and games and how we use it.</p>
-<h3>1. Information we collect</h3><ul><li>Information you give us, such as your name and email when you contact us.</li><li>Technical data such as device type, browser, and approximate region, collected automatically.</li><li>Anonymous usage data and advertising identifiers used to improve our games and show ads.</li></ul>
-<h3>2. How we use information</h3><ul><li>To provide, maintain and improve our website and games.</li><li>To respond to your messages and support requests.</li><li>To show advertising through third-party partners such as Google AdMob and AdSense, which may use cookies or advertising IDs.</li><li>To keep our services secure and prevent abuse.</li></ul>
-<h3>3. Sharing</h3><p>We do not sell your personal data. We share it only with service providers that help us run our services (such as hosting, analytics and advertising partners), or when required by law.</p>
-<h3>4. Cookies</h3><p>We and our partners may use cookies and similar technologies. You can disable cookies in your browser settings and reset the advertising ID in your device settings.</p>
-<h3>5. Children</h3><p>Our services are not directed to children under 13 and we do not knowingly collect their personal data. If you believe a child has given us data, contact us and we will delete it.</p>
-<h3>6. Security &amp; retention</h3><p>We use reasonable measures to protect your data and keep it only as long as needed.</p>
-<h3>7. Your rights</h3><p>You may request access to, correction of, or deletion of your personal data by contacting us.</p>
-<h3>8. Changes</h3><p>We may update this policy; the new date will be shown at the top of this page.</p>
-<h3>9. Contact</h3><p>Questions? Email <span class="em2"></span>.</p></div></section>
-
-<section class="view" id="v-terms"><div class="page"><h1>Terms of Service</h1><div class="u">Last updated: <span class="dt"></span></div>
-<p>By using the DevChazers website or downloading our games, you agree to these terms.</p>
-<h3>1. Use of our games</h3><p>You may download and play our games for personal, non-commercial use. You may not copy, resell, reverse-engineer or redistribute them without written permission.</p>
-<h3>2. Intellectual property</h3><p>All games, artwork, code, names and logos are owned by DevChazers and protected by law.</p>
-<h3>3. Acceptable conduct</h3><p>Do not misuse our services, attempt to break their security, or upload harmful content.</p>
-<h3>4. Disclaimer</h3><p>Our games and website are provided "as is" without warranties of any kind. We do not guarantee uninterrupted or error-free service.</p>
-<h3>5. Limitation of liability</h3><p>To the extent permitted by law, DevChazers is not liable for indirect or consequential damages arising from use of our services.</p>
-<h3>6. Changes &amp; termination</h3><p>We may update these terms or suspend access if they are violated.</p>
-<h3>7. Contact</h3><p>Email <span class="em2"></span> for any questions.</p></div></section>
-<section class="view" id="v-game"><div class="gp" id="gpage"></div></section>
-<section class="view" id="v-cms"><div class="page" id="cms_page"></div></section>
-</main>
-<div class="lb" id="lb"><button class="x" id="lbx" aria-label="Close">✕</button><button class="nav l" id="lbp" aria-label="Previous">‹</button><img id="lbimg" alt=""><button class="nav r" id="lbn" aria-label="Next">›</button></div>
-
-<footer><div class="wrap"><div class="fg">
-  <div><a class="logo" href="#home"><b>DevChazers</b></a><p class="muted" style="margin-top:8px;max-width:260px">Imaginative games that go beyond the ordinary.</p></div>
-  <div><h4>Quick Links</h4><ul><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#news">Blog &amp; News</a></li><li><a href="#support">Support DevChazers</a></li><li><a href="#remove-ads">Remove Ads</a></li><li><a href="#contact">Contact</a></li></ul></div>
-  <div><h4>Games</h4><ul id="fgames"></ul></div>
-  <div><h4>Legal Links</h4><ul><li><a href="/privacy-policy">Privacy Policy</a></li><li><a href="/terms">Terms of Service</a></li><li style="margin-top:8px"><input class="admin-key" id="adminKey" type="password" placeholder="" aria-label="Admin access password" autocomplete="current-password" spellcheck="false"></li></ul></div>
-</div><div class="wm">DevChazers</div><div class="copy">© <span id="yr"></span> DevChazers. All rights reserved.</div></div></footer>
-
-<script>window.DC_ROOT="./";</script>
-<script src="js/config.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
-<script src="js/data-service.js"></script>
-<script src="js/site.js"></script>
-<script src="js/intro.js"></script>
-<script src="js/theme.js"></script>
-</body>
-</html>
+<h3>How it works</h3><ul><li>Open the game and tap <b>Settings</b> or the <b>Shop</b>.</li><li>Tap <b>Remove Ads</b> and pay securely through Google Play.</li><li>Ads are removed immediately. No account or ID needed.</li><li>Reinstalled or new phone? Open the game and tap <b>Restore Purchases</b> using the same Google acc
