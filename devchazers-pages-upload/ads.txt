@@ -1,3 +1,0 @@
-# Add your AdMob / ad network lines in Admin → Ads, then download and replace this file, or edit here.
-# Example:
-# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
