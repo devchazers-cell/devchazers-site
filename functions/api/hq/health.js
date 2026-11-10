@@ -7,6 +7,9 @@
    ========================================================================== */
 import { conf } from './_shared.js';
 
+/* Tables that must exist for OAuth + publishing to work. */
+const TABLES = ['hq_social_accounts', 'hq_social_tokens', 'hq_social_posts'];
+
 const NEEDED = [
   ['SUPABASE_URL', env => !!env.SUPABASE_URL],
   ['SUPABASE_ANON_KEY', env => !!env.SUPABASE_ANON_KEY],
@@ -38,21 +41,44 @@ export async function onRequestGet({ request, env }) {
   });
 
   const c = conf(env);
-  const ready = !!(c.url && c.anon && c.svc && env.HQ_TOKEN_KEY && String(env.HQ_TOKEN_KEY).length >= 16);
+  const coreReady = !!(c.url && c.anon && c.svc && env.HQ_TOKEN_KEY && String(env.HQ_TOKEN_KEY).length >= 16);
   const host = new URL(request.url).host;
+
+  /* Probe the tables with the service role — tells you before you click Connect
+     whether the schema is really applied. Only booleans come back. */
+  const tables = {};
+  if (c.url && c.svc) {
+    for (const t of TABLES) {
+      try {
+        const r = await fetch(c.url + '/rest/v1/' + t + '?select=id&limit=1', {
+          headers: { apikey: c.svc, authorization: 'Bearer ' + c.svc, prefer: 'count=exact' }
+        });
+        if (r.ok) { tables[t] = true; }
+        else {
+          const j = await r.json().catch(() => ({}));
+          tables[t] = false;
+          if (j && (j.code === '42P01' || /does not exist/i.test(j.message || ''))) missing.push('TABLE ' + t + ' (run hq-schema.sql)');
+        }
+      } catch (e) { tables[t] = false; }
+    }
+  }
+  const tablesReady = Object.keys(tables).length > 0 && Object.values(tables).every(Boolean);
+  const ready = coreReady && tablesReady;
 
   return new Response(JSON.stringify({
     ok: true,
     api: 'deployed',
     host,
     serverReady: ready,
-    serverReadyMeans: 'Every core secret is present. Publishing/OAuth can work.',
-    core,
+    serverReadyMeans: 'Every core secret is present and the HQ tables exist. OAuth/publishing can work.',
+    coreReady,
+    tables,
+    tablesReady,
     providers,
     missing,
     nextStep: ready
-      ? 'Secrets look complete. Open HQ → Social → Accounts → Connect YouTube, and register this redirect URI with Google: https://' + host + '/api/hq/oauth/youtube/callback'
-      : 'Add the variables listed in "missing" as Cloudflare secrets, then redeploy.'
+      ? 'Everything is ready. Open HQ → Social → Accounts → Connect YouTube. Register this redirect URI with Google first: https://' + host + '/api/hq/oauth/youtube/callback'
+      : (coreReady ? 'Secrets are fine, but an HQ table is missing — run admin/hq/hq-schema.sql in Supabase.' : 'Add the variables listed in "missing" as Cloudflare secrets, then redeploy.')
   }, null, 2), {
     headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' }
   });
