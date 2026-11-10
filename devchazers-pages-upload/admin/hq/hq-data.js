@@ -32,7 +32,7 @@
        "not configured" to a live redirect. Example:
        youtube: { authUrl: 'https://accounts.google.com/o/oauth2/v2/auth?...' } */
     PROVIDERS: {
-      youtube: { authUrl: '' }, facebook: { authUrl: '' }, instagram: { authUrl: '' },
+      youtube: { authUrl: '/api/hq/oauth/youtube/start' }, facebook: { authUrl: '' }, instagram: { authUrl: '' },
       tiktok: { authUrl: '' }, x: { authUrl: '' }, linkedin: { authUrl: '' },
       pinterest: { authUrl: '' }, reddit: { authUrl: '' }, threads: { authUrl: '' }
     },
