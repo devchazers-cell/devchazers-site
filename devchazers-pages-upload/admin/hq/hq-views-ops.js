@@ -116,14 +116,18 @@
 
       ui.card({
         title: 'Needs attention', tight: true,
-        body: items.length ? '<div class="hq-list" style="padding:12px">' + items.map(n =>
-          '<div class="hq-li"><div class="ic">' + HQ.icon(n.icon) + '</div>' +
-          '<div class="bd2"><b><span class="bd ' + n.tone + '" style="margin-right:6px">' + HQ.esc(n.kind) + '</span>' + HQ.esc(n.title) + '</b>' +
-          '<span>' + HQ.esc(HQ.clamp(n.text, 150)) + '</span></div>' +
-          (n.at ? '<time>' + HQ.esc(HQ.rel(n.at)) + '</time>' : '') +
-          '<span class="hq-inline" style="gap:4px;margin-left:8px">' +
+        body: items.length ? '<div class="hq-list hq-notilist">' + items.map(n =>
+          '<div class="hq-noti ' + n.tone + '">' +
+          '<div class="ic">' + HQ.icon(n.icon) + '</div>' +
+          '<div class="bd2">' +
+          '<div class="kind"><span class="bd ' + n.tone + '">' + HQ.esc(n.kind) + '</span>' +
+          (n.at ? '<time>' + HQ.esc(HQ.rel(n.at)) + '</time>' : '') + '</div>' +
+          '<b>' + HQ.esc(n.title) + '</b>' +
+          '<span>' + HQ.esc(HQ.clamp(n.text, 160)) + '</span></div>' +
+          '<div class="acts">' +
           (n.href ? '<a class="btn sm" href="' + n.href + '">Open</a>' : '') +
-          '<button type="button" class="btn sm" data-dismiss="' + HQ.esc(n.id) + '" title="Dismiss">' + HQ.icon('x') + '</button></span></div>').join('') + '</div>'
+          '<button type="button" class="btn sm" data-dismiss="' + HQ.esc(n.id) + '" title="Dismiss" aria-label="Dismiss">' + HQ.icon('x') + '</button>' +
+          '</div></div>').join('') + '</div>'
           : ui.empty({ icon: 'check', title: 'Nothing needs attention', text: 'No failed posts, no expiring tokens, no due queue. This list fills itself from real state only.' })
       }) +
 
