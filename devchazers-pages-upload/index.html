@@ -126,7 +126,7 @@ select{background:var(--card);color:var(--tx);border:1px solid var(--bd);border-
   box-shadow:0 0 70px #7c4dff99,0 0 30px #00e5ff55,inset -16px -16px 34px #000000aa;
   animation:pf 6s ease-in-out infinite}
 @keyframes pf{50%{transform:translateY(-10px)}}
-@keyframes pfr{50%{transform:rotate(-20deg) translateY(-10px)}}
+ @keyframes pfr{50%{transform:rotate(-20deg) translateY(-10px)}}
 
 /* planet ring */
 .galaxy .ring{position:absolute;left:17%;top:40%;width:66%;height:20%;border-radius:50%;
@@ -209,4 +209,49 @@ select{background:var(--card);color:var(--tx);border:1px solid var(--bd);border-
 <h3>How it works</h3><ul><li>Open the game and tap <b>Settings</b> or the <b>Shop</b>.</li><li>Tap <b>Remove Ads</b> and pay securely through Google Play.</li><li>Ads are removed immediately. No account or ID needed.</li><li>Reinstalled or new phone? Open the game and tap <b>Restore Purchases</b> using the same Google account.</li></ul>
 <h3>Questions?</h3><p>If something goes wrong with a purchase, contact us at <b class="em2"></b> with your Google Play order number and we will help.</p></div></section>
 
-<section class="view" id="v-contact"><div class="page"><h1>Contact Us</h1><div class="u">We usually reply within 24 hou
+<section class="view" id="v-contact"><div class="page"><h1>Contact Us</h1><div class="u">We usually reply within 24 hours</div>
+  <label>Your name</label><input id="c_n"><label>Your email</label><input id="c_e" type="email"><label>Message</label><textarea id="c_m" rows="5"></textarea>
+  <button class="pill w" id="c_s">Send Message</button><p style="margin-top:18px">Or email us: <b class="em2"></b></p></div></section>
+
+<section class="view" id="v-privacy"><div class="page"><h1>Privacy Policy</h1><div class="u">Last updated: <span class="dt"></span></div>
+<p>DevChazers ("we", "us") respects your privacy. This policy explains what information we collect when you use our website and games and how we use it.</p>
+<h3>1. Information we collect</h3><ul><li>Information you give us, such as your name and email when you contact us.</li><li>Technical data such as device type, browser, and approximate region, collected automatically.</li><li>Anonymous usage data and advertising identifiers used to improve our games and show ads.</li></ul>
+<h3>2. How we use information</h3><ul><li>To provide, maintain and improve our website and games.</li><li>To respond to your messages and support requests.</li><li>To show advertising through third-party partners such as Google AdMob and AdSense, which may use cookies or advertising IDs.</li><li>To keep our services secure and prevent abuse.</li></ul>
+<h3>3. Sharing</h3><p>We do not sell your personal data. We share it only with service providers that help us run our services (such as hosting, analytics and advertising partners), or when required by law.</p>
+<h3>4. Cookies</h3><p>We and our partners may use cookies and similar technologies. You can disable cookies in your browser settings and reset the advertising ID in your device settings.</p>
+<h3>5. Children</h3><p>Our services are not directed to children under 13 and we do not knowingly collect their personal data. If you believe a child has given us data, contact us and we will delete it.</p>
+<h3>6. Security &amp; retention</h3><p>We use reasonable measures to protect your data and keep it only as long as needed.</p>
+<h3>7. Your rights</h3><p>You may request access to, correction of, or deletion of your personal data by contacting us.</p>
+<h3>8. Changes</h3><p>We may update this policy; the new date will be shown at the top of this page.</p>
+<h3>9. Contact</h3><p>Questions? Email <span class="em2"></span>.</p></div></section>
+
+<section class="view" id="v-terms"><div class="page"><h1>Terms of Service</h1><div class="u">Last updated: <span class="dt"></span></div>
+<p>By using the DevChazers website or downloading our games, you agree to these terms.</p>
+<h3>1. Use of our games</h3><p>You may download and play our games for personal, non-commercial use. You may not copy, resell, reverse-engineer or redistribute them without written permission.</p>
+<h3>2. Intellectual property</h3><p>All games, artwork, code, names and logos are owned by DevChazers and protected by law.</p>
+<h3>3. Acceptable conduct</h3><p>Do not misuse our services, attempt to break their security, or upload harmful content.</p>
+<h3>4. Disclaimer</h3><p>Our games and website are provided "as is" without warranties of any kind. We do not guarantee uninterrupted or error-free service.</p>
+<h3>5. Limitation of liability</h3><p>To the extent permitted by law, DevChazers is not liable for indirect or consequential damages arising from use of our services.</p>
+<h3>6. Changes &amp; termination</h3><p>We may update these terms or suspend access if they are violated.</p>
+<h3>7. Contact</h3><p>Email <span class="em2"></span> for any questions.</p></div></section>
+<section class="view" id="v-game"><div class="gp" id="gpage"></div></section>
+<section class="view" id="v-cms"><div class="page" id="cms_page"></div></section>
+</main>
+<div class="lb" id="lb"><button class="x" id="lbx" aria-label="Close">✕</button><button class="nav l" id="lbp" aria-label="Previous">‹</button><img id="lbimg" alt=""><button class="nav r" id="lbn" aria-label="Next">›</button></div>
+
+<footer><div class="wrap"><div class="fg">
+  <div><a class="logo" href="#home"><b>DevChazers</b></a><p class="muted" style="margin-top:8px;max-width:260px">Imaginative games that go beyond the ordinary.</p></div>
+  <div><h4>Quick Links</h4><ul><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#news">Blog &amp; News</a></li><li><a href="#support">Support DevChazers</a></li><li><a href="#remove-ads">Remove Ads</a></li><li><a href="#contact">Contact</a></li></ul></div>
+  <div><h4>Games</h4><ul id="fgames"></ul></div>
+  <div><h4>Legal Links</h4><ul><li><a href="/privacy-policy">Privacy Policy</a></li><li><a href="/terms">Terms of Service</a></li><li style="margin-top:8px"><input class="admin-key" id="adminKey" type="password" placeholder="" aria-label="Admin access password" autocomplete="current-password" spellcheck="false"></li></ul></div>
+</div><div class="wm">DevChazers</div><div class="copy">© <span id="yr"></span> DevChazers. All rights reserved.</div></div></footer>
+
+<script>window.DC_ROOT="./";</script>
+<script src="js/config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="js/data-service.js"></script>
+<script src="js/site.js"></script>
+<script src="js/intro.js"></script>
+<script src="js/theme.js"></script>
+</body>
+</html>
