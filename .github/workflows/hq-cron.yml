@@ -1,0 +1,53 @@
+# ============================================================================
+#  DevChazers HQ — free scheduler
+#
+#  Cloudflare Pages cannot run cron jobs, so GitHub does it instead.
+#  Every 6 hours this workflow asks the site to:
+#     1. publish posts whose scheduled time has arrived (?due=1)
+#     2. refresh YouTube metrics into hq_social_metrics / hq_social_insights
+#
+#  Setup (once):
+#     GitHub repo → Settings → Secrets and variables → Actions → New secret
+#         Name : HQ_CRON_SECRET
+#         Value: the same random string you saved in Cloudflare
+#  GitHub's scheduler is free; a run costs a few seconds.
+# ============================================================================
+name: HQ cron
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # 00:00, 06:00, 12:00, 18:00 UTC = 05:00, 11:00, 17:00, 23:00 PKT
+  workflow_dispatch:        # lets you run it by hand from the Actions tab
+
+concurrency:
+  group: hq-cron
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Publish due posts
+        env:
+          CRON: ${{ secrets.HQ_CRON_SECRET }}
+        run: |
+          if [ -z "$CRON" ]; then echo "HQ_CRON_SECRET is not set in repo secrets"; exit 1; fi
+          code=$(curl -sS -o due.json -w '%{http_code}' -X POST \
+            -H "Authorization: Bearer $CRON" \
+            -H "content-type: application/json" \
+            --data '{}' \
+            "https://devchazers.site/api/hq/publish?due=1")
+          echo "HTTP $code"; head -c 600 due.json; echo
+          test "$code" = "200"
+
+      - name: Sync analytics
+        env:
+          CRON: ${{ secrets.HQ_CRON_SECRET }}
+        run: |
+          code=$(curl -sS -o sync.json -w '%{http_code}' \
+            -H "Authorization: Bearer $CRON" \
+            "https://devchazers.site/api/hq/sync?days=28")
+          echo "HTTP $code"; head -c 900 sync.json; echo
+          test "$code" = "200"
+          
