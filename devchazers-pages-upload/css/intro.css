@@ -1,0 +1,22 @@
+/* DevChazers intro animation. Plays once per session. Failsafe: hides itself after 6s even if JS fails. */
+#intro{position:fixed;inset:0;z-index:9999;background:var(--bg,#0a0a14);display:none;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;
+  animation:introFail .5s 6s forwards}
+html.intro #intro{display:flex}
+#intro canvas{position:absolute;inset:0;width:100%;height:100%}
+#intro .glow{position:absolute;width:60vmax;height:60vmax;border-radius:50%;background:radial-gradient(circle,#00e5ff40,transparent 65%);animation:glow 2.4s ease-out both}
+#intro .ic{position:relative;width:78px;height:78px;margin-bottom:18px;opacity:0;transform:scale(.3) rotate(-30deg);animation:icIn .7s .45s cubic-bezier(.2,1.4,.4,1) forwards}
+#intro .word{position:relative;display:flex;font:900 clamp(26px,8.2vw,120px)/1 Orbitron,Impact,sans-serif;letter-spacing:1px;text-transform:uppercase;color:#e8e8f5}
+#intro .word span{display:inline-block;overflow:hidden;line-height:1.05}
+#intro .word i{display:inline-block;font-style:normal;transform:translateY(110%);animation:rise .6s cubic-bezier(.2,.9,.2,1) forwards}
+#intro .word span:nth-child(n+7) i{color:transparent;-webkit-text-stroke:1.5px #00e5ff}
+#intro .tag{position:relative;margin-top:12px;color:#9a9ab8;font:500 13px/1 Inter,sans-serif;letter-spacing:6px;text-transform:uppercase;opacity:0;animation:fade .6s 1.6s forwards}
+#intro .bar{position:absolute;left:0;bottom:0;height:3px;width:100%;background:linear-gradient(90deg,#7c4dff,#00e5ff);transform:scaleX(0);transform-origin:left;animation:bar 2.1s .1s ease-out forwards}
+#intro .skip{position:absolute;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));background:#fff1;color:#fff;border:1px solid #fff3;border-radius:99px;padding:7px 16px;font:500 12px Inter,sans-serif;cursor:pointer}
+#intro.out{animation:none;transform:translateY(-100%);transition:transform .85s cubic-bezier(.8,0,.2,1)}
+#intro.gone{display:none!important}
+html.intro-done main>.view.on,html.intro-done header{animation:siteIn .9s cubic-bezier(.2,.9,.2,1) both}
+@keyframes rise{to{transform:none}}@keyframes fade{to{opacity:1}}@keyframes bar{to{transform:scaleX(1)}}
+@keyframes icIn{to{opacity:1;transform:none}}@keyframes glow{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+@keyframes siteIn{from{opacity:0;transform:translateY(24px)}}
+@keyframes introFail{to{opacity:0;visibility:hidden;pointer-events:none}}
+@media(prefers-reduced-motion:reduce){#intro{display:none!important}}
